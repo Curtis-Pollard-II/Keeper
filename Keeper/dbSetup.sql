@@ -56,3 +56,20 @@ UPDATE keeps SET
   description = "is there a problem with being bald",
   img = "https://media.istockphoto.com/photos/completely-bald-man-head-picture-id626510790?k=20&m=626510790&s=612x612&w=0&h=5dbNIsbJDHRczElO6D52yl2LsHicaAxAQGsK0q6kK3Q="
 WHERE id = 1;
+
+
+
+
+-- VAULTS
+CREATE Table IF NOT EXISTS vaults(
+  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
+  updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
+  creatorId VARCHAR(255) NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  description TEXT NOT NULL, 
+  img VARCHAR(255) NOT NULL,
+  isPrivate BOOLEAN Not NULL DEFAULT false,
+
+  Foreign Key (creatorId) REFERENCES accounts (id) ON DELETE CASCADE
+)default charset utf8 COMMENT '';
