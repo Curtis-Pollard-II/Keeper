@@ -1,6 +1,6 @@
 namespace Keeper.Models
 {
-    public class Vault
+    public class Vault : RepoItem<int>
     {
         public string CreatorId { get; set; }
         public string Name { get; set; }

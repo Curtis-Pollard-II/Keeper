@@ -13,13 +13,13 @@ namespace Keeper.Services
             _vRepo = vRepo;
         }
 
-          internal Vault Create(Vault newVault)
+        internal Vault Create(Vault newVault)
         {
             return _vRepo.Create(newVault);
         }
 
 
-         internal Vault GetOne(int id)
+        internal Vault GetOne(int id)
         {
             Vault vault = _vRepo.GetOne(id);
             if (vault == null)
@@ -46,7 +46,7 @@ namespace Keeper.Services
         internal string Delete(int id, string userId)
         {
             Vault original = GetOne(id);
-            if(original.CreatorId != userId)
+            if (original.CreatorId != userId)
             {
                 throw new Exception("You are not the Creator of this Vault, therefore you cannot delete it");
             }

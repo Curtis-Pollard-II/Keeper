@@ -55,13 +55,13 @@ namespace Keeper.Controllers
 
         [HttpPut("{id}")]
         [Authorize]
-        public async Task<ActionResult<Vault>> Update(int id, [FromBody] Vault update)
+        public async Task<ActionResult<Vault>> Update(int id, [FromBody] Vault vaultData)
         {
             try
             {
                 Account user = await HttpContext.GetUserInfoAsync<Account>();
-                update.Id = id;
-                Vault vault = _vaultsService.Update(update, user.Id);
+                vaultData.Id = id;
+                Vault vault = _vaultsService.Update(vaultData, user.Id);
                 return Ok(vault);
             }
             catch (Exception e)

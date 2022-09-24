@@ -19,16 +19,13 @@ namespace Keeper.Services
 
         internal VaultKeepViewModel Create(VaultKeep newVaultKeep, string userId)
         {
-            Vault vault = _vService.Getone(newVaultKeep.vaultId);
+            Vault vault = _vService.GetOne(newVaultKeep.VaultId);
             if (vault.CreatorId != userId)
             {
                 throw new Exception("you are not the creator of that Vault, can't add a keep");
             }
-            // create the collection pieces
             int id = _VKRepo.Create(newVaultKeep);
-            //   Get the original piece
             VaultKeepViewModel vaultKeep = _kService.GetViewModelById(newVaultKeep.KeepId);
-            //   attach collectionpiece id to it for the view model
             vaultKeep.VaultKeepId = id;
             //   return to user
             return vaultKeep;
