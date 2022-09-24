@@ -51,6 +51,16 @@ namespace Keeper.Services
 
         }
 
+        internal VaultKeepViewModel GetViewModelById(int keepId)
+        {
+            VaultKeepViewModel keep = _kRepo.GetAllViewModelById(keepId);
+            if (keep == null)
+            {
+                throw new Exception("no keep by that id");
+            }
+            return keep;
+        }
+
         internal string Delete(int id, string userId)
         {
             Keep original = GetOne(id);
