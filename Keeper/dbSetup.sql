@@ -100,3 +100,12 @@ VALUES
 
 SELECT * FROM keeps
 WHERE id = 1;
+
+SELECT
+vk.*,
+k.*,
+a.*
+FROM vaultkeeps vk
+JOIN keeps k ON vk.keepId = k.id
+JOIN accounts a ON k.creatorId = a.id
+WHERE vk.vaultId = 4;
