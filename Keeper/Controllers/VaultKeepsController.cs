@@ -1,3 +1,7 @@
+using System;
+using System.Threading.Tasks;
+using CodeWorks.Auth0Provider;
+using Keeper.Models;
 using Keeper.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,23 +18,25 @@ namespace Keeper.Controllers
             _VKService = vKService;
         }
 
-        // [HttpPost]
-      
+        [HttpPost]
 
-        // public async Task<ActionResult<VaultKeepViewModel>> Create([FromBody] VaultKeep newVaultKeep)
-        // {
-        //     try 
-        //     {
-        //         Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
-        //         VaultKeepViewModel vaultKeep = _VKService.Create(newVaultKeep, userInfo.Id);
-        //         return Ok(vaultKeep);
 
-        //     }
-        //     catch (Exception e)
-        //     {
-        //       return BadRequest(e.Message);
-        //     }
-        // }
+        public async Task<ActionResult<VaultKeep>> Create([FromBody] VaultKeep newVaultKeep)
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                newVaultKeep.CreatorId = userInfo.Id;
+                VaultKeep vaultKeep = _VKService.Create(newVaultKeep);
+                vaultKeep.Creator = userInfo;
+                return Ok(vaultKeep);
+
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
 
 
 

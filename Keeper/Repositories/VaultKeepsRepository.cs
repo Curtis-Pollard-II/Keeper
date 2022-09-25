@@ -1,4 +1,6 @@
 using System.Data;
+using Dapper;
+using Keeper.Models;
 
 namespace Keeper.Repositories
 {
@@ -11,18 +13,20 @@ namespace Keeper.Repositories
             _db = db;
         }
 
-        // internal int Create(VaultKeep newVaultKeep)
-        // {
-        //     string sql = @"
-        //     INSERT INTO vaultkeeps
-        //     (keepId, creatorId, vaultId)
-        //     VALUES
-        //     (@keepId, @creatorId, @vaultId);
-        //     SELECT LAST_INSERT_ID();
-        //     ";
-        //     int id = _db.ExecuteScalar<int>(sql, newVaultKeep);
-        //     return id;
-        // }
+        internal VaultKeep Create(VaultKeep newVaultKeep)
+        {
+            string sql = @"
+            INSERT INTO vaultkeeps
+            (keepId, creatorId, vaultId)
+            VALUES
+            (@keepId, @creatorId, @vaultId);
+            SELECT LAST_INSERT_ID();
+            ";
+            int id = _db.ExecuteScalar<int>(sql, newVaultKeep);
+            newVaultKeep.Id = id;
+            return newVaultKeep;
+        }
+
 
 
     }

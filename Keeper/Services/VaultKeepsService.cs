@@ -1,3 +1,4 @@
+using Keeper.Models;
 using Keeper.Repositories;
 
 namespace Keeper.Services
@@ -13,6 +14,11 @@ namespace Keeper.Services
             _VKRepo = vKRepo;
             _vService = vService;
             _kService = kService;
+        }
+
+        internal VaultKeep Create(VaultKeep newVaultKeep)
+        {
+            return _VKRepo.Create(newVaultKeep);
         }
 
         // internal VaultKeep Create(VaultKeep newVaultKeep, string userId)

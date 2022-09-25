@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS vaultkeeps(
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   vaultId INT NOT NULL,
   keepId INT NOT NULL,
-  creatorId INT NOT NULL,
+  creatorId VARCHAR(255) NOT NULL,
 
   FOREIGN KEY (keepId) REFERENCES keeps (id) ON DELETE CASCADE,
   FOREIGN KEY (vaultId) REFERENCES vaults (id) ON DELETE CASCADE
@@ -93,7 +93,10 @@ CREATE TABLE IF NOT EXISTS vaultkeeps(
 
 DROP TABLE vaultkeeps;
 
-INSERT
+INSERT INTO vaultkeeps
+(vaultId, creatorId, keepId)
+VALUES
+(4,"630646e5c568ba359c37a1ed",2);
 
 SELECT * FROM keeps
 WHERE id = 1;

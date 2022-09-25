@@ -13,12 +13,10 @@ namespace Keeper.Controllers
     public class VaultsController : ControllerBase
     {
         private readonly VaultsService _vaultsService;
-        private readonly VaultKeepsService _VKService;
 
-        public VaultsController(VaultsService vaultsService, VaultKeepsService vKService)
+        public VaultsController(VaultsService vaultsService)
         {
             _vaultsService = vaultsService;
-            _VKService = vKService;
         }
 
         [HttpPost]
@@ -86,24 +84,6 @@ namespace Keeper.Controllers
                 return BadRequest(e.Message);
             }
         }
-
-        // [HttpGet("{id}/keeps")]
-
-        // public ActionResult<List<VaultKeepViewModel>> GetKeepsByVault(int id)
-        // {
-        //     try
-        //     {
-        //                               vaultkeeps  keepsservice
-        //         List<VaultKeepViewModel> keeps = _VKService.GetKeepsByVaultId(id);
-        //                 vaultkeeps   
-        //         return Ok(keeps);
-        //     }
-        //     catch (Exception e)
-        //     {
-        //         return BadRequest(e.Message);
-        //     }
-        // }
-
 
 
     }
