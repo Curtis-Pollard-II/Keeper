@@ -85,12 +85,15 @@ CREATE TABLE IF NOT EXISTS vaultkeeps(
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   vaultId INT NOT NULL,
   keepId INT NOT NULL,
+  creatorId INT NOT NULL,
 
   FOREIGN KEY (keepId) REFERENCES keeps (id) ON DELETE CASCADE,
   FOREIGN KEY (vaultId) REFERENCES vaults (id) ON DELETE CASCADE
 ) default charset utf8 COMMENT '';
 
 DROP TABLE vaultkeeps;
+
+INSERT
 
 SELECT * FROM keeps
 WHERE id = 1;

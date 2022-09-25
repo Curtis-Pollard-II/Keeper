@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using CodeWorks.Auth0Provider;
 using Keeper.Models;
@@ -88,20 +87,22 @@ namespace Keeper.Controllers
             }
         }
 
-        [HttpGet("{id}/keeps")]
+        // [HttpGet("{id}/keeps")]
 
-        public ActionResult<List<VaultKeepViewModel>> GetKeepsByVault(int id)
-        {
-            try
-            {
-                List<VaultKeepViewModel> keeps = _VKService.GetKeepsByVaultId(id);
-                return Ok(keeps);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-        }
+        // public ActionResult<List<VaultKeepViewModel>> GetKeepsByVault(int id)
+        // {
+        //     try
+        //     {
+        //                               vaultkeeps  keepsservice
+        //         List<VaultKeepViewModel> keeps = _VKService.GetKeepsByVaultId(id);
+        //                 vaultkeeps   
+        //         return Ok(keeps);
+        //     }
+        //     catch (Exception e)
+        //     {
+        //         return BadRequest(e.Message);
+        //     }
+        // }
 
 
 
