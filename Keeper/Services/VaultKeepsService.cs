@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Keeper.Models;
 using Keeper.Repositories;
 
@@ -27,8 +28,12 @@ namespace Keeper.Services
             int id = _VKRepo.Create(newVaultKeep);
             VaultKeepViewModel vaultKeep = _kService.GetViewModelById(newVaultKeep.KeepId);
             vaultKeep.VaultKeepId = id;
-            //   return to user
             return vaultKeep;
+        }
+
+        internal List<VaultKeepViewModel> GetKeepsByVaultId(int vaultId)
+        {
+            return _VKRepo.GetKeepsByVaultId(vaultId);
         }
     }
 }

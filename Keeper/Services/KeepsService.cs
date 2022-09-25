@@ -56,7 +56,7 @@ namespace Keeper.Services
             VaultKeepViewModel keep = _kRepo.GetAllViewModelById(keepId);
             if (keep == null)
             {
-                throw new Exception("no keep by that id");
+                throw new Exception("NOOOOO keep by that id");
             }
             return keep;
         }

@@ -32,10 +32,14 @@ namespace Keeper
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Keeper", Version = "v1" });
             });
             services.AddScoped<IDbConnection>(x => CreateDbConnection());
-            services.AddTransient<KeepsRepository>();
-            services.AddScoped<AccountsRepository>();
             services.AddScoped<AccountService>();
             services.AddTransient<KeepsService>();
+            services.AddTransient<VaultsService>();
+            services.AddTransient<VaultKeepsService>();
+            services.AddTransient<KeepsRepository>();
+            services.AddTransient<VaultsRepository>();
+            services.AddTransient<VaultKeepsRepository>();
+            services.AddScoped<AccountsRepository>();
         }
 
         private void ConfigureCors(IServiceCollection services)
