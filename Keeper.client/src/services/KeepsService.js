@@ -1,14 +1,14 @@
-const { AppState } = require("../AppState");
-const { logger } = require("../utils/Logger");
-const { api } = require("./AxiosService");
+import { AppState } from "../AppState";
+import { logger } from "../utils/Logger";
+import { api } from "./AxiosService";
 
 class KeepsService {
 
     async getKeeps(){
         const res = await api.get('api/keeps')
-        logger.log(res.data, 'getting keeps from the service')
+        // logger.log(res.data, 'getting keeps from the service')
         AppState.keeps = res.data
-        logger.log('Checking the appstate contents', AppState.keeps)
+        // logger.log('Checking the appstate contents', AppState.keeps)
     }
 }
 
