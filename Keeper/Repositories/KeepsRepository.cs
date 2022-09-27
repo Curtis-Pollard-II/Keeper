@@ -15,6 +15,23 @@ namespace Keeper.Repositories
             _db = db;
         }
 
+        internal List<Keep> GetKeepsByProfileId(string id)
+        {
+        string sql = @"
+            SELECT 
+                k.*,
+                a.*
+            FROM keeps k
+            JOIN accounts a ON a.id = k.creatorId
+            WHERE a.id = @id;
+            ";
+            return _db.Query<Keep, Profile, Keep>(sql, (keep, profile) =>
+            {
+                keep.Creator = profile;
+                return keep;
+            }, new { id }).ToList();
+        }
+
         internal List<Keep> GetAll()
         {
             string sql = @"
@@ -71,6 +88,8 @@ namespace Keeper.Repositories
             VaultKeepViewModel keep = _db.Query<VaultKeepViewModel>(sql, new { keepId }).FirstOrDefault();
             return keep;
         }
+
+
 
         internal Keep Update(Keep keepData)
         {

@@ -91,14 +91,14 @@ namespace Keeper.Controllers
         [HttpGet("{id}/keeps")]
         public ActionResult<List<VaultKeepViewModel>> GetKeepsInVault(int id)
         {
-            try 
+            try
             {
-              List<VaultKeepViewModel> keeps = _VKService.GetKeepsByVault(id);
-              return Ok(keeps);
+                List<VaultKeepViewModel> keeps = _VKService.GetKeepsByVault(id);
+                return Ok(keeps);
             }
             catch (Exception e)
             {
-              return BadRequest(e.Message);
+                return BadRequest(e.Message);
             }
         }
 

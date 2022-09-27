@@ -109,3 +109,24 @@ FROM vaultkeeps vk
 JOIN keeps k ON vk.keepId = k.id
 JOIN accounts a ON k.creatorId = a.id
 WHERE vk.vaultId = 4;
+
+SELECT
+k.*,
+a.*
+FROM accounts a
+JOIN keeps k ON a.id = k.id
+WHERE a.id = 1;
+
+SELECT 
+    k.*,
+    a.*
+FROM keeps k
+JOIN accounts a ON a.id = k.creatorId
+WHERE a.id = 1;
+
+SELECT
+v.*,
+a.*
+FROM vaults v
+JOIN accounts a ON a.id = v.creatorId 
+WHERE a.id = 1;

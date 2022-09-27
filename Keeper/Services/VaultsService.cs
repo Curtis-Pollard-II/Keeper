@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Keeper.Models;
 using Keeper.Repositories;
 
@@ -52,6 +53,11 @@ namespace Keeper.Services
             }
             _vRepo.Delete(id);
             return "Vault Successfully Deleted";
+        }
+
+        internal List<Vault> GetVaultsByProfileId(string id)
+        {
+            return _vRepo.GetVaultsByProfileId(id);
         }
     }
 }

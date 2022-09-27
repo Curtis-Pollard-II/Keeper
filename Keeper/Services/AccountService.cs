@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Keeper.Models;
 using Keeper.Repositories;
 
@@ -35,6 +36,12 @@ namespace Keeper.Services
             original.Name = editData.Name.Length > 0 ? editData.Name : original.Name;
             original.Picture = editData.Picture.Length > 0 ? editData.Picture : original.Picture;
             return _repo.Edit(original);
+        }
+
+        internal List<Vault> GetMyVaults(string id)
+        {
+            List<Vault> vaults = _repo.GetMyVaults(id);
+            return vaults;
         }
     }
 }

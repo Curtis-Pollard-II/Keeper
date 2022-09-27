@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Keeper.Models;
 using Keeper.Repositories;
@@ -27,6 +28,34 @@ namespace Keeper.Services
             return _VKRepo.GetKeepsByVault(vaultId);
         }
 
+        internal string Delete(int id, string userId)
+        {
+
+                VaultKeep original = GetOne(id);
+                if (original.CreatorId != userId)
+                {
+                    throw new Exception("Cannot delete. Not your Vault Keep");
+                }
+                _VKRepo.Delete(id);
+                return "VaultKeeps Successfully deleted";
+
+
+            }
+
+        internal VaultKeep GetOne(int id)
+        {
+            VaultKeep vaultKeep = _VKRepo.GetOne(id);
+            if (vaultKeep == null)
+            {
+                throw new Exception("No VaultKeep be that id...Sorry");
+            }
+            return vaultKeep;
+        }
+    }
+
+
+
+
         // internal VaultKeep Create(VaultKeep newVaultKeep, string userId)
         // {
         //     Vault vault = _vService.GetOne(newVaultKeep.VaultId);
@@ -54,4 +83,3 @@ namespace Keeper.Services
 
 
     }
-}

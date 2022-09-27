@@ -1,11 +1,11 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Keeper.Models;
 using Keeper.Services;
 using CodeWorks.Auth0Provider;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace Keeper.Controllers
 {
@@ -28,6 +28,21 @@ namespace Keeper.Controllers
             {
                 Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
                 return Ok(_accountService.GetOrCreateProfile(userInfo));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet("vaults")]
+        [Authorize]
+        public ActionResult<List<Vault>> GetMyVaults(string id)
+        {
+            try
+            {
+                List<Vault> vaults = _accountService.GetMyVaults(id);
+                return Ok(vaults);
             }
             catch (Exception e)
             {

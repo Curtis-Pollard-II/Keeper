@@ -51,6 +51,11 @@ namespace Keeper.Services
 
         }
 
+        internal List<Keep> GetKeepsByProfileId(string id)
+        {
+            return _kRepo.GetKeepsByProfileId(id);
+        }
+
         internal string Delete(int id, string userId)
         {
             Keep original = GetOne(id);
