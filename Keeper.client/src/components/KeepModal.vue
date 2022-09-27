@@ -20,8 +20,10 @@
                     </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-between">
-                    <img class="rounded-circle z-depth-2" :src="keep.creator.picture"/>
-                    <div class="p-3">
+                  
+                        <img class="rounded-circle selectable z-depth-2 img-size" :src="keep?.creator.picture"/>
+                      
+                    <div class="p-0">
                         <button class="bg-secondary btn btn-pill fs-4">Add to Vault</button>
                         <button class="bg-success btn btn-pill mdi mdi-trash-can-outline mdi-24px"></button>
                     </div>
@@ -35,11 +37,14 @@
 
 <script>
 import { computed } from '@vue/runtime-core';
+import { useRoute } from 'vue-router';
 import { AppState } from '../AppState';
 export default {
+
 setup() {
+
   return {
-    keep: computed(()=> AppState.activeKeep)
+    keep: computed(() => AppState.activeKeep)
   };
 },
 };
@@ -47,4 +52,8 @@ setup() {
 
 
 <style> 
+.img-size{
+    max-width: 50px;
+    width: auto;
+}
 </style>

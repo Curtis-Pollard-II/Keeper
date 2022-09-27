@@ -2,11 +2,13 @@
 <!-- add router link here -->
     <div class=" container-fluid p-3">
         <div class="bg-light border p-1 elevation-2 rounded selectable" @click="setActive()">
-            <img class="img-fluid" :src="keep.img" alt="image goes here" style="width:100%;">
+            <img class="img-fluid" :src="keep?.img" alt="image goes here" style="width:100%;">
             <div>
-                <h3 class="text-white  content with-eight">{{keep.name}}
+                <h3 class="text-white  content with-eight">{{keep?.name}}
                     <div class="righty">
-                        <img :src="keep.creator.picture"/>
+                        <router-link :to="{ name: 'Profile', params: { id: keep?.creatorId } }">
+                            <img  class="rounded-circle z-depth-2 img-size selectable" :src="keep?.creator.picture"/>
+                        </router-link>
                     </div>
                 </h3>
             </div>    
@@ -14,9 +16,6 @@
         <KeepModal />
 
     </div>
-
-
-
 </template>
 
 
@@ -26,7 +25,10 @@ import { keepsService } from '../services/KeepsService';
 import { logger } from '../utils/Logger';
 import KeepModal from './KeepModal.vue';
 export default {
-    props: { keep: { type: Object, required: true } },
+    props:{  
+        keep: { type: Object, required: true },
+    },
+
     setup(props) {
         return {
             async setActive() {
@@ -47,6 +49,12 @@ export default {
 
 
 <style> 
+
+.img-size{
+    max-width: 50px;
+    width: auto;
+    opacity: 0.8;
+}
 
 .container-fluid {
     position: relative;
