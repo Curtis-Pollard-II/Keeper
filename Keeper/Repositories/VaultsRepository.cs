@@ -93,7 +93,7 @@ namespace Keeper.Repositories
                 a.*
             FROM vaults v
             JOIN accounts a ON a.id = v.creatorId
-            WHERE v.creatorId = @id AND v.isPrivate = false;
+            WHERE a.id = @profileId AND isPrivate = false;
             ";
             return _db.Query<Vault, Profile, Vault>(sql, (vault, profile) =>
             {
