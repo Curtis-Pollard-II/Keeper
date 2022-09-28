@@ -97,7 +97,7 @@ DROP TABLE vaultkeeps;
 INSERT INTO vaultkeeps
 (vaultId, creatorId, keepId)
 VALUES
-(4,"630646e5c568ba359c37a1ed",2);
+(256,"630646e5c568ba359c37a1ed",2);
 
 SELECT * FROM keeps;
 

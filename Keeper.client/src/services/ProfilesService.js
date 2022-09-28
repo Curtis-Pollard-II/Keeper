@@ -1,5 +1,4 @@
 import { AppState } from "../AppState"
-import { Profile } from "../models/Profile"
 import { logger } from "../utils/Logger"
 
 import { api } from "./AxiosService"
@@ -7,7 +6,7 @@ import { api } from "./AxiosService"
 class ProfilesService{
     async getProfileById(id) {
         const res = await api.get(`api/profiles/${id}`)
-        AppState.activeProfile = new Profile(res.data)
+        AppState.activeProfile = res.data
     }
 
     async getVaultsByProfileId(id) {

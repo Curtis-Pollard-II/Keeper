@@ -1,24 +1,34 @@
 <template>
       <div class="row">
-        <div class="col-12 text-center py-3">
+
+
+        <div class="col-md-4 p-4">
+          <img class="img-fluid profile-pic rounded-circle z-depth-2" :src="profile?.picture" alt="">
+        </div>
+        <div class="col-md-8 text-center py-3">
             <h1 class="text-danger pt-2">
               {{profile?.name}}
-            </h1>
+              {{keeps?.kept}}
+            </h1> 
         </div>
-
+<hr>
         <div class="container">
           <div class="row d-flex justify-content-center">
-            <div class="col-md-4" v-for="v in vaults" :key="v.id">
-                <VaultCard :vaults="v"/>
+            <div class="col-md-3" v-for="v in vaults" :key="v.id">
+                <VaultCard :vault="v"/>
+            </div>
+          </div>
+        </div>
+<hr>
+        <div class="container">
+          <div class="row d-flex justify-content-center">
+            <div class="col-md-3" v-for="k in keeps" :key="k.id">
+                <KeepCard :keep="k"/>
             </div>
           </div>
         </div>
 
-        <div class="bg-danger">{{vaults?.name}}</div>
 
-
-
-        
       </div>
 
 </template>
@@ -32,7 +42,6 @@ import { profilesService } from '../services/ProfilesService';
 import { logger } from '../utils/Logger';
 export default {
 
-  
 
 setup() {
 
@@ -78,5 +87,10 @@ const route = useRoute()
 
 
 <style> 
+.profile-pic {
+  max-width: 200px;
+  width: auto;
+  opacity: 0.9;
+}
 
 </style>
