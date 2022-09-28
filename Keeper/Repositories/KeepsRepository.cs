@@ -57,6 +57,8 @@ namespace Keeper.Repositories
             FROM keeps k
             JOIN accounts a ON a.id = k.creatorId
             WHERE k.id = @id;
+            UPDATE keeps
+            WHERE
             "; 
             return _db.Query<Keep, Profile, Keep>(sql, (keep, profile) => 
             {

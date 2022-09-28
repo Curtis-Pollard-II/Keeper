@@ -55,9 +55,17 @@ namespace Keeper.Services
             return "Vault Successfully Deleted";
         }
 
-        internal List<Vault> GetVaultsByProfileId(string id)
+        internal List<Vault> GetVaultsByProfileId(string userId, string profileId)
         {
-            return _vRepo.GetVaultsByProfileId(id);
+            if (userId == profileId)
+            {
+                return _vRepo.GetVaultsByProfileId(profileId);
+            }
+            else
+            {
+                return _vRepo.GetPublicVaultsByProfileId(profileId);
+            }
+            
         }
     }
 }

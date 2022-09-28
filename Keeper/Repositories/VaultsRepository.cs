@@ -76,13 +76,30 @@ namespace Keeper.Repositories
                 a.*
             FROM vaults v
             JOIN accounts a ON a.id = v.creatorId
-            WHERE a.id = @id;
+            WHERE v.creatorId = @id;
             ";
             return _db.Query<Vault, Profile, Vault>(sql, (vault, profile) =>
             {
                 vault.Creator = profile;
                 return vault;
             }, new { id }).ToList();
+        }
+
+        internal List<Vault> GetPublicVaultsByProfileId(string profileId)
+        {
+            string sql = @"
+            SELECT 
+                v.*,
+                a.*
+            FROM vaults v
+            JOIN accounts a ON a.id = v.creatorId
+            WHERE v.creatorId = @id AND v.isPrivate = false;
+            ";
+            return _db.Query<Vault, Profile, Vault>(sql, (vault, profile) =>
+            {
+                vault.Creator = profile;
+                return vault;
+            }, new { profileId }).ToList();
         }
     }
 }

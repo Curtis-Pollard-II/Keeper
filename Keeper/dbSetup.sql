@@ -122,12 +122,12 @@ SELECT
     k.*,
     a.*
 FROM keeps k
-JOIN accounts a ON a.id = k.creatorId
-WHERE a.id = 1;
+JOIN accounts a ON a.id = k.creatorId;
+
 
 SELECT
 v.*,
 a.*
 FROM vaults v
 JOIN accounts a ON a.id = v.creatorId 
-WHERE a.id = 1;
+WHERE a.id = "630646e5c568ba359c37a1ed" AND v.isPrivate = false;
