@@ -38,9 +38,9 @@ namespace Keeper.Services
             return _repo.Edit(original);
         }
 
-        internal List<Vault> GetMyVaults(string id)
+        internal List<Vault> GetMyVaults(Account userInfo)
         {
-            List<Vault> vaults = _repo.GetMyVaults(id);
+            List<Vault> vaults = _repo.GetMyVaults(userInfo);
             return vaults;
         }
     }

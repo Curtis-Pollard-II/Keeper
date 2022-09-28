@@ -15,6 +15,7 @@ namespace Keeper.Controllers
     {
         private readonly AccountService _accountService;
 
+
         public AccountController(AccountService accountService)
         {
             _accountService = accountService;
@@ -37,11 +38,12 @@ namespace Keeper.Controllers
 
         [HttpGet("vaults")]
         [Authorize]
-        public ActionResult<List<Vault>> GetMyVaults(string id)
+        public async  Task<ActionResult<List<Vault>>> GetMyVaults()
         {
             try
             {
-                List<Vault> vaults = _accountService.GetMyVaults(id);
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                List<Vault> vaults = _accountService.GetMyVaults(userInfo);
                 return Ok(vaults);
             }
             catch (Exception e)

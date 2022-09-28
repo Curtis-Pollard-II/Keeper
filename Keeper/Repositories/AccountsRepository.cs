@@ -56,21 +56,15 @@ namespace Keeper.Repositories
             return update;
         }
 
-        internal List<Vault> GetMyVaults(string id)
+        internal List<Vault> GetMyVaults(Account userInfo)
         {
             string sql = @"
-            SELECT
-            v.*,
-            a.*
-            FROM vaults v
-            JOIN accounts a ON a.id = v.creatorId 
-            WHERE a.id = @id;
-            ";
-            return _db.Query<Vault, Account, Vault>(sql, (vault, account) =>
-            {
-                vault.Creator = account;
-                return vault;
-            }).ToList();
+            SELECT *
+            FROM vaults
+            WHERE creatorId = '" + userInfo.Id + "';";
+
+            List<Vault> res = _db.Query<Vault>(sql).ToList();
+            return res;
         }
     }
 }

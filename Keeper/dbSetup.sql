@@ -76,7 +76,8 @@ CREATE Table IF NOT EXISTS vaults(
   Foreign Key (creatorId) REFERENCES accounts (id) ON DELETE CASCADE
 )default charset utf8 COMMENT '';
 
-DROP TABLE vaults;
+SELECT * FROM vaults
+WHERE creatorId = '630646e5c568ba359c37a1ed';
 
 
 
