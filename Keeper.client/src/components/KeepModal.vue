@@ -25,22 +25,11 @@
                     </div>
                         
 
-
-
-                    <!-- <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            Add to Vault
-                        </button>
-                        <ul class="dropdown-menu" v-for="v in vaults" :key="v.name"  aria-labelledby="dropdownMenuButton1">
-                            {{vaults.name}}
-                        </ul>
-                    </div> -->
-
                     <div class="dropdown">
                         <button  class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown button                      
+                            Add to Vault
                             <ul class="dropdown-menu">
-                                <li><a  v-for="v in vaults" :key="v.name" class="dropdown-item">{{v.name}}</a></li>
+                                <li><a  v-for="v in vaults" :key="v.name" class="dropdown-item" @click="createVaultKeep(v.id)">{{v.name}}</a></li>
                             </ul>
                         </button>
                     </div>
@@ -57,12 +46,12 @@
 
 <script>
 import { computed } from '@vue/runtime-core';
-
 import Pop from '../utils/Pop';
 import { keepsService } from '../services/KeepsService';
 import { router } from '../router';
 import { logger } from '../utils/Logger';
 import { AppState } from '../AppState';
+import { vaultKeepsService } from '../services/VaultKeepsService';
 export default {
 
 setup() {
@@ -83,6 +72,16 @@ setup() {
         } catch (error) {
         logger.error(error)
         Pop.toast(error.message, 'error')
+        }
+    },
+
+    async createVaultKeep(vaultId){
+        try {
+            let vaultKeep = {vaultId: vaultId, keepId: AppState.activeKeep.id}
+          await vaultKeepsService.createVaultKeep(vaultKeep)
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message, 'error')
         }
     }
 };

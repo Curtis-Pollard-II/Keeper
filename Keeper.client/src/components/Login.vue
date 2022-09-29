@@ -34,6 +34,12 @@
             Manage Account
           </div>
         </router-link>
+
+        <router-link :to="{ name: 'Profile', params: { id: user?.id } }">
+          <div class="list-group-item list-group-item-action hoverable">
+            View Profile Page
+          </div>
+        </router-link>
         <div
           class="list-group-item list-group-item-action hoverable text-danger"
           @click="logout"

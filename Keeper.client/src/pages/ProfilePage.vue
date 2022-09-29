@@ -13,7 +13,7 @@
             <p class="display-6">Keeps:  {{keeps?.length}}</p>
 
         </div>
-<hr>
+
         <div class="container bg-success">
           <h1 class="p-3 display-2 text-light">Vaults
                 <span type="button" class="selectable mdi mdi-plus" data-bs-target="#vault-form" data-bs-toggle="modal"></span>

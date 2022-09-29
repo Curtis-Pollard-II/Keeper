@@ -14,6 +14,7 @@ import KeepCard from '../components/KeepCard.vue';
 import { logger } from '../utils/Logger';
 import { keepsService } from '../services/KeepsService'
 import Pop from '../utils/Pop';
+import { accountService } from '../services/AccountService';
 export default {
   name: 'Home',
   setup() {
@@ -25,6 +26,10 @@ export default {
         Pop.toast(error.message, 'error')
       }
     }
+
+
+
+    
     onMounted(() => {
       getKeeps();
     });

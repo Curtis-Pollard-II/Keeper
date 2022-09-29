@@ -46,15 +46,17 @@ const router = useRouter();
           await vaultKeepsService.GetVault(route.params.id)
         } catch (error) {
           logger.error(error)
-
+          Pop.error(error.message)
         }
     }
+
 
     async function getVaultKeeps(){
         try {
           await vaultKeepsService.getVaultKeeps(route.params.id)
         } catch (error) {
           logger.error(error)
+          Pop.toast(error.message, 'error')
         }
     }
     // async function getPrivateVaultKeeps(){

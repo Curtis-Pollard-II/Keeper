@@ -29,7 +29,12 @@ class VaultKeepsService {
         let res = await api.post(`api/vaults`, vaultData)
         logger.log('creating vualt from the service', res.data)
         AppState.activeProfileVaults.push(res.data)
+    }
 
+    async createVaultKeep(vaultKeep){
+        let res = await api.post(`api/vaultkeeps`, vaultKeep)
+        logger.log('creating vualtkeeps from the service', res.data)
+        AppState.activeVaultKeeps.push(res.data)
     }
 }
 
