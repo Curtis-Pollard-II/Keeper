@@ -20,13 +20,24 @@
                     </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-between">
-                  
+                    <div>
                         <img class="rounded-circle selectable z-depth-2 img-size" :src="keep?.creator.picture"/>
-                      
-                    <div class="p-0">
-                        <button class="bg-secondary btn btn-pill fs-4">Add to Vault</button>
-                        <button v-if="keep?.creatorId == account?.id" @click="deleteKeep(keep)" class="bg-success btn btn-pill mdi mdi-trash-can-outline mdi-24px"></button>
                     </div>
+                        
+
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown button
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div>
+                        
+                        <button v-if="keep?.creatorId == account?.id" @click="deleteKeep(keep)" class="bg-success btn btn-pill mdi mdi-trash-can-outline mdi-24px"></button>
+                    
                 </div>
             </div>
         </div>
