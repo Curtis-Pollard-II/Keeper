@@ -23,6 +23,13 @@ class KeepsService {
         AppState.keeps = AppState.keeps.filter(k => k.id != id)
     }
 
+    async createKeep(keepData){
+        let res = await api.post(`api/keeps`, keepData)
+        logger.log('creating keep from the service', res.data)
+        AppState.keeps.push(res.data)
+
+    }
+
 }
 
 export const keepsService = new KeepsService()
