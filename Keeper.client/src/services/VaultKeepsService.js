@@ -4,12 +4,25 @@ import { api } from "./AxiosService"
 
 class VaultKeepsService {
 
-
+   async GetVault (id){
+        const res = await api.get(`api/vaults/${id}`)
+        logger.log('active vault from the service', res.data)
+        AppState.activeVault = res.data
+   }
     async getVaultKeeps(id){
         const res = await api.get(`api/vaults/${id}/keeps`)
         logger.log('getting VaultKeeps from the service', res.data)
         AppState.activeVaultKeeps = res.data
         logger.log('Checking the appstate for VaultKeeps', res.data)
+    }
+
+    async deleteVault(id){
+        const res = await api.delete(`api/vaults/${id}`)
+        AppState.activeProfileVaults = AppState.activeProfileVaults.filter(v => v.id != id)
+    }
+
+    setActiveVault(vault){
+        AppState.activeVault = vault
     }
     // async getPrivateVaultKeeps(id){
     //     const res = await api.get(`api/vaults/${id}/keeps`)

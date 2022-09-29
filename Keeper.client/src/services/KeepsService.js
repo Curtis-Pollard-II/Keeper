@@ -17,6 +17,12 @@ class KeepsService {
         AppState.activeKeep = res.data
         logger.log('active keep in the appstate success', AppState.activeKeep)
     }
+
+    async deleteKeep(id){
+        const res = await api.delete(`api/keeps/${id}`)
+        AppState.keeps = AppState.keeps.filter(k => k.id != id)
+    }
+
 }
 
 export const keepsService = new KeepsService()

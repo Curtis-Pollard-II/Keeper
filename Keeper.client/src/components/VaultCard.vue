@@ -2,7 +2,7 @@
     <div class=" container-fluid p-3">
         <div class="bg-light border p-1 elevation-2 rounded selectable">
                 <router-link :to="{ name: 'Vault', params: { id: vault?.id } }">
-                    <img class="img-fluid adjust-size" :src="vault?.img" alt="image goes here" style="width:100%;">
+                    <img class="adjust-size home home-card" :src="vault?.img" alt="image goes here" style="width:100%;">
                 </router-link>
             <div>
                 <h3 class="text-white  content with-eight">{{vault?.name}}</h3>
@@ -24,35 +24,31 @@ export default {
 setup() {
 
 
-return {};
+return {
+
+};
 },
 };
 </script>
 
 
 
-<style> 
+<style scoped lang="scss"> 
 
-
-.container-fluid {
-    position: relative;
-    font-family: Garamond, serif; 
-    font-size: 24px; 
-    font-style: normal; 
-    font-variant: normal; 
-    font-weight: 700; 
-    line-height: 26.4px; }
-
-
-.container-fluid .content {
-    
-    position: absolute; /* Position the background text */
-    bottom: 0; /* At the bottom. Use top:0 to append it to the top */
-    left: 3px;
-    width: 100%; /* Full width */
-    padding: 10px; /* Some padding */
+.home{
+  display: grid;
+  height: 28vh;
+  place-content: center;
 }
 
+.content {
+    
+    position: absolute; 
+    bottom: 0; 
+    left: 3px;
+    width: 100%; 
+    padding: 10px; 
+}
 .with-eight {
     text-shadow:
         0.05em 0 black,
@@ -66,11 +62,7 @@ return {};
 }
 
 
-.righty{
-    position: absolute;
-    bottom: 13px;
-    right: 36px;
-}
+
 
 
 

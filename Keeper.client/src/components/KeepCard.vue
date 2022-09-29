@@ -37,7 +37,7 @@ export default {
                     await keepsService.getOne(props.keep.id);
                 }
                 catch (error) {
-                    logger.error(error);
+                logger.error(error);
                     
                 }
             },

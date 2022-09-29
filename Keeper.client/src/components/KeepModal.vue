@@ -25,7 +25,7 @@
                       
                     <div class="p-0">
                         <button class="bg-secondary btn btn-pill fs-4">Add to Vault</button>
-                        <button class="bg-success btn btn-pill mdi mdi-trash-can-outline mdi-24px"></button>
+                        <button v-if="keep?.creatorId == account?.id" @click="deleteKeep(keep)" class="bg-success btn btn-pill mdi mdi-trash-can-outline mdi-24px"></button>
                     </div>
                 </div>
             </div>
@@ -37,14 +37,32 @@
 
 <script>
 import { computed } from '@vue/runtime-core';
-import { useRoute } from 'vue-router';
 import { AppState } from '../AppState';
+import Pop from '../utils/Pop';
+import { keepsService } from '../services/KeepsService';
+import { router } from '../router';
+import { logger } from '../utils/Logger';
 export default {
 
 setup() {
 
   return {
-    keep: computed(() => AppState.activeKeep)
+    account: computed(() => AppState.account),
+    keep: computed(() => AppState.activeKeep),
+
+    async deleteKeep(keep) {
+        try {
+          const yes = await Pop.confirm('Are you sure you want to delete this Keep?')
+          if (!yes) {
+            return;
+          }
+          await keepsService.deleteKeep(keep?.id)
+          router.push({name: 'Home'})
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message, 'error')
+        }
+    }
   };
 },
 };
