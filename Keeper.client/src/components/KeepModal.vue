@@ -25,18 +25,27 @@
                     </div>
                         
 
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown button
+
+
+                    <!-- <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            Add to Vault
                         </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <ul class="dropdown-menu" v-for="v in vaults" :key="v.name"  aria-labelledby="dropdownMenuButton1">
+                            {{vaults.name}}
                         </ul>
+                    </div> -->
+
+                    <div class="dropdown">
+                        <button  class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown button                      
+                            <ul class="dropdown-menu">
+                                <li><a  v-for="v in vaults" :key="v.name" class="dropdown-item">{{v.name}}</a></li>
+                            </ul>
+                        </button>
                     </div>
                         
-                        <button v-if="keep?.creatorId == account?.id" @click="deleteKeep(keep)" class="bg-success btn btn-pill mdi mdi-trash-can-outline mdi-24px"></button>
+                    <button v-if="keep?.creatorId == account?.id" @click="deleteKeep(keep)" class="bg-success btn btn-pill mdi mdi-trash-can-outline mdi-24px"></button>
                     
                 </div>
             </div>
@@ -48,33 +57,35 @@
 
 <script>
 import { computed } from '@vue/runtime-core';
-import { AppState } from '../AppState';
+
 import Pop from '../utils/Pop';
 import { keepsService } from '../services/KeepsService';
 import { router } from '../router';
 import { logger } from '../utils/Logger';
+import { AppState } from '../AppState';
 export default {
 
 setup() {
 
-  return {
+    return {
     account: computed(() => AppState.account),
     keep: computed(() => AppState.activeKeep),
+    vaults: computed(() => AppState.activeProfileVaults),
 
     async deleteKeep(keep) {
         try {
-          const yes = await Pop.confirm('Are you sure you want to delete this Keep?')
-          if (!yes) {
+        const yes = await Pop.confirm('Are you sure you want to delete this Keep?')
+        if (!yes) {
             return;
-          }
-          await keepsService.deleteKeep(keep?.id)
-          router.push({name: 'Home'})
+    }
+        await keepsService.deleteKeep(keep?.id)
+        router.push({name: 'Home'})
         } catch (error) {
-          logger.error(error)
-          Pop.toast(error.message, 'error')
+        logger.error(error)
+        Pop.toast(error.message, 'error')
         }
     }
-  };
+};
 },
 };
 </script>
