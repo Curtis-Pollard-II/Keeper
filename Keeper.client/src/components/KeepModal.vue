@@ -8,14 +8,14 @@
                                 <img class="img-fluid" :src="keep?.img" alt="">
                             </div>
                             <div class="col-6">
-                                <div class="text-center">
-                                    <div class="pt-2">
-                                        <h1 class="border-bottom ">{{keep?.name}}</h1>
+                                <div>
+                                    <div class="pt-2 text-center">
+                                        <h2 class="border-bottom ">{{keep?.name}}</h2>
                                     </div>
                                     <div class="pt-2">
-                                        {{keep?.description}}
+                                        <p class="fs-5">{{keep?.description}}</p>
                                     </div>
-                                    <div class="pt-2">
+                                    <div class="pt-2 text-center">
                                         Views: {{keep?.views}}
                                     </div>
                                 </div>

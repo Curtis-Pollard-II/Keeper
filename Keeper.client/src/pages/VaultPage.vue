@@ -5,8 +5,8 @@
             <p class="p-3 fs-5">Total Keeps:  {{keeps.length}}</p>
 
         </div>
-        <div class=" col-2 offset-6">
-            <button title="Delete Vault" v-if="vault?.creatorId == account.id" @click="deleteVault()" class="bg-success btn btn-pill mdi mdi-trash-can-outline mdi-24px"></button>
+        <div class="p-4 col-2 offset-6">
+            <button title="Delete Vault" v-if="vault?.creatorId == account.id" @click="deleteVault()" class="bg-info btn btn-pill mdi mdi-trash-can-outline mdi-24px"></button>
   
         </div>
 
@@ -31,11 +31,8 @@ import { useRoute, useRouter } from 'vue-router';
 import { logger } from '../utils/Logger';
 import { AppState } from '../AppState';
 import Pop from '../utils/Pop';
-import { router } from '../router';
 export default {
-//     props: {
-//         vault: { type: Object, required: true },
-//   },
+
 
 
 setup() {
@@ -60,18 +57,12 @@ const router = useRouter();
           Pop.toast(error.message, 'error')
         }
     }
-    // async function getPrivateVaultKeeps(){
-    //     try {
-    //       await vaultKeepsService.getPrivateVaultKeeps(route.params.id)
-    //     } catch (error) {
-    //       logger.error(error)
-    //     }
-    // }
+
 
 onMounted(()=> {
     getVaultKeeps();
     GetVault();
-    // getPrivateVaultKeeps();
+
   })
 
 

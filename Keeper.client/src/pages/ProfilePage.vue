@@ -1,7 +1,6 @@
 <template>
       <div class="row bg-light">
 
-
         <div class="col-md-4 p-4">
           <img class="img-fluid profile-pic rounded-circle z-depth-2" :src="profile?.picture" alt="">
         </div>
@@ -11,11 +10,10 @@
             </h1> 
             <p class="display-6">Vaults:  {{vaults?.length}}</p>
             <p class="display-6">Keeps:  {{keeps?.length}}</p>
-
         </div>
 
         <div class="container bg-success">
-          <h1 class="p-3 display-2 text-black">Vaults
+          <h1 class="p-3 display-2 text-">Vaults
                 <span v-if="profile?.id == account?.id" title="Open Vault Form" type="button" class="text-light selectable mdi mdi-plus" data-bs-target="#vault-form" data-bs-toggle="modal"></span>
           </h1>
           <div class="row">
@@ -35,7 +33,6 @@
             </div>
           </div>
         </div>
-
 
       </div>
 

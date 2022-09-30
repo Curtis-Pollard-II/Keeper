@@ -36,6 +36,12 @@ class VaultKeepsService {
         logger.log('creating vualtkeeps from the service', res.data)
         AppState.activeVaultKeeps.push(res.data)
     }
+
+    async removeFromVault(id){
+        let res= await api.delete(`api/vaultkeeps/${id}`)
+        logger.log('deleting vaultkeep from the service', res.data)
+        AppState.vaultKeeps.filter(vk => vk.id != id)
+    }
 }
 
 export const vaultKeepsService = new VaultKeepsService()

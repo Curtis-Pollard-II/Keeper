@@ -6,8 +6,8 @@
     <router-view />
   </main>
   <footer>
-    <div class="bg-dark text-black text-center p-4 mdi mdi-safe">
-      <h4>KEEPER</h4> 
+    <div class="bg-dark text-white text-center p-4 mdi mdi-safe">
+      <h4 class="text-black">KEEPER</h4> 
     </div>
   </footer>
 </template>

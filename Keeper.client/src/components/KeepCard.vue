@@ -63,7 +63,6 @@ export default {
     font-family: DejaVu Sans Mono, monospace; 
     font-size: 24px; 
     font-weight: 700; 
-     
     
 }
 
