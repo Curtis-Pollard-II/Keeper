@@ -39,9 +39,9 @@
                     <div v-if="keep?.creatorId == account?.id">
                         <button title="Delete Keep"  @click="deleteKeep(keep)" class="bg-success btn btn-pill mdi mdi-trash-can-outline mdi-24px"></button>
                     </div>
-                    <!-- <div v-else-if="keep?.creatorId == account?.id && ">
-                        <button  title="Remove From this Vault"  @click="removeFromVault(vaultKeep.id)" class="bg-danger btn btn-pill mdi mdi-trash-can-outline mdi-24px"></button>
-                    </div> -->
+                    <div v-if="vaultKeep?.creatorId">
+                        <button  title="Remove From this Vault"  @click="removeFromVault(vaultKeep.id)" class="bg-primary btn btn-pill mdi mdi-trash-can-outline mdi-24px"></button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -66,6 +66,7 @@ setup() {
     account: computed(() => AppState.account),
     keep: computed(() => AppState.activeKeep),
     vaults: computed(() => AppState.activeProfileVaults),
+    vaultKeep: computed(() => AppState.activeVaultKeeps),
 
     async deleteKeep(keep) {
         try {

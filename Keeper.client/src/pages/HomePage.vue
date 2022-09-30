@@ -1,5 +1,5 @@
 <template>
- <div class="masonry">
+ <div class="masonry bg-info">
     <div v-for="k in keeps" :key="k.id">
       <KeepCard :keep="k" />
     </div>
@@ -46,7 +46,7 @@ export default {
   column-gap: .5em;
 
   div {
-    display: block;
+    display:inline-block;
     margin-bottom: .5em;
   }
 }

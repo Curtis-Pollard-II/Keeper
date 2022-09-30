@@ -2,7 +2,7 @@
 <!-- add router link here -->
     <div class=" container-fluid p-3">
         <div class="bg-light border p-1 elevation-2 rounded selectable" >
-            <img @click="setActiveKeep()" class="img-fluid" :src="keep?.img" alt="image goes here" style="width:100%;">
+            <img @click="setActiveKeep()" class="img-fluid overlay" :src="keep?.img" alt="image goes here" style="width:100%;">
             <div>
                 <h3 class="text-white  content with-eight">{{keep?.name}}
                     <div class="righty">
@@ -55,6 +55,7 @@ export default {
     max-width: 50px;
     width: auto;
     opacity: 0.8;
+    
 }
 
 .container-fluid {
@@ -64,16 +65,19 @@ export default {
     font-style: normal; 
     font-variant: normal; 
     font-weight: 700; 
-    line-height: 26.4px; }
-
-
-.container-fluid .content {
+    line-height: 26.4px; 
     
-    position: absolute; /* Position the background text */
-    bottom: 0; /* At the bottom. Use top:0 to append it to the top */
+}
+
+
+.container-fluid .content {/* this is for the name in bottom */
+    
+    position: absolute; 
+    bottom: 0; 
     left: 10px;
-    width: 100%; /* Full width */
-    padding: 20px; /* Some padding */
+    width: 100%; 
+    padding: 20px; 
+
 }
 
 .with-eight {
@@ -93,6 +97,17 @@ export default {
     position: absolute;
     bottom: 13px;
     right: 36px;
+}
+
+.overlay{
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.3;
 }
 
 
