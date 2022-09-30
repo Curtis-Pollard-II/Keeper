@@ -1,14 +1,14 @@
 <template>
-    <div class=" container-fluid p-3">
-        <div class="bg-light border p-1 elevation-2 rounded selectable">
-                <router-link :to="{ name: 'Vault', params: { id: vault?.id } }">
-                    <img class="adjust-size  image-adjust home home-card" :src="vault?.img" alt="image goes here" style="width:100%;">
-                </router-link>
-            <div>
-                <h3 class="text-white  content with-eight">{{vault?.name}}</h3>
-            </div>    
-        </div>
-    </div>
+   
+    <router-link :to="{ name: 'Vault', params: { id: vault?.id } }">
+        <div class="bg-light border p-1 elevation-2 rounded selectable position-relative w-100">
+                    <img class=" image-adjust home " :src="vault?.img" alt="image goes here">
+                    
+                    <h3 class="text-white  content with-eight">{{vault?.name}}</h3>
+                    
+                </div>
+            </router-link>
+
 </template>
 
 
@@ -35,11 +35,11 @@ return {
 
 <style scoped lang="scss"> 
 
-.home{
-  display: grid;
-  max-height: 28vh;
-  place-content: center;
-}
+// .home{
+//   display: grid;
+//   max-height: 28vh;
+//   place-content: center;
+// }
 
 .content {
     
@@ -48,6 +48,7 @@ return {
     left: 3px;
     width: 100%; 
     padding: 10px; 
+    overflow-wrap: break-word;
 }
 .with-eight {
     text-shadow:
@@ -63,6 +64,7 @@ return {
 
 .image-adjust{
     filter: contrast(75%);
+    width: 100%;
 }
 
 

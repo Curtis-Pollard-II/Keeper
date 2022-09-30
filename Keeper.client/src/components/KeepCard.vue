@@ -40,6 +40,7 @@ export default {
                     Modal.getOrCreateInstance(document.getElementById("keepModal")).toggle();
                     if(props.keep.vaultKeepId){
                         await vaultKeepsService.setActiveVaultKeep(props.keep)
+                        props.keep.views++
                     }else{
                         await keepsService.getOne(props.keep.id);
                     }

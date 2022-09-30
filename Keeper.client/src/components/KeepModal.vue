@@ -8,6 +8,10 @@
                                 <img class="img-fluid" :src="keep?.img" alt="">
                             </div>
                             <div class="col-6">
+                                <div class="pt-2 text-center d-flex justify-content-around">
+                                       <p>Views: {{keep?.views}}</p> 
+                                       <p>Kept: {{keep?.kept}}</p> 
+                                    </div>
                                 <div>
                                     <div class="pt-2 text-center">
                                         <h2 class="border-bottom ">{{keep?.name}}</h2>
@@ -15,12 +19,7 @@
                                     <div class="pt-2">
                                         <p class="fs-5">{{keep?.description}}</p>
                                     </div>
-                                    <div class="pt-2 text-center">
-                                        Views: {{keep?.views}}
-                                    </div>
-                                    <div class="pt-2 text-center">
-                                        Kept: {{keep?.kept}}
-                                    </div>
+                                 
                                 </div>
                             </div>
                     </div>
@@ -39,7 +38,7 @@
                             </ul>
                         </button>
                     </div>
-                    <div v-if="keep?.vaultKeepId">
+                    <div v-if="keep?.vaultKeepId && keep?.creatorId == account.id">
                         <button  title="Remove From this Vault"  @click="removeFromVault(keep.vaultKeepId)" class="bg-primary btn btn-pill mdi mdi-trash-can-outline mdi-24px"></button>
                     </div>
                     <div v-else-if="keep?.creatorId == account?.id ">
@@ -63,6 +62,7 @@ import { router } from '../router';
 import { logger } from '../utils/Logger';
 import { AppState } from '../AppState';
 import { vaultKeepsService } from '../services/VaultKeepsService';
+import { Modal } from 'bootstrap';
 export default {
 
 setup() {
@@ -79,8 +79,9 @@ setup() {
         if (!yes) {
             return;
     }
+    Modal.getOrCreateInstance(document.getElementById("keepModal")).hide();
         await keepsService.deleteKeep(keep?.id)
-        router.push({name: 'Home'})
+        // router.push({name: 'Home'})
         } catch (error) {
         logger.error(error)
         Pop.toast(error.message, 'error')
@@ -91,6 +92,7 @@ setup() {
         try {
             let vaultKeep = {vaultId: vaultId, keepId: AppState.activeKeep.id}
           await vaultKeepsService.createVaultKeep(vaultKeep)
+          this.keep.kept++
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message, 'error')
@@ -102,6 +104,7 @@ setup() {
                 if (!yes){
                     return;
                 }
+                Modal.getOrCreateInstance(document.getElementById("keepModal")).hide();
                 await vaultKeepsService.removeFromVault(id)
                 } catch (error) {
                 logger.error(error)

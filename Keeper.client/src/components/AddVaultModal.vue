@@ -24,7 +24,7 @@
             </div>    
         </div>
         <div class="modal-footer">
-            <button  id="button-submit-form" title="Add Vault" type="submit" @click="handleSubmit()" class="btn btn-primary w-100 p-2 mt-3 text-light" data-bs-dismiss="modal">Submit</button>
+            <button  id="button-submit-form" title="Add Vault" type="submit" @click.prevent="handleSubmit()" class="btn btn-primary w-100 p-2 mt-3 text-light" data-bs-dismiss="modal">Submit</button>
         </div>
       </div>
       

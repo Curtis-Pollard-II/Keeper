@@ -25,10 +25,10 @@ class VaultKeepsService {
         AppState.activeVault = vault
     }
 
-    setActiveVaultKeep(vaultKeep){
+   async  setActiveVaultKeep(vaultKeep){
         // let vaultKeep = AppState.vaultKeeps.findIndex(k => k.id == id)
         AppState.activeKeep = vaultKeep
-        // send get by id request to the api/keeps/vaultKeep.id
+        await api.get(`api/keeps/${vaultKeep.id}`)
     }
 
     async createVault(vaultData){
@@ -46,7 +46,7 @@ class VaultKeepsService {
     async removeFromVault(id){
         let res= await api.delete(`api/vaultkeeps/${id}`)
         logger.log('deleting vaultkeep from the service', res.data)
-        AppState.vaultKeeps.filter(vk => vk.id != id)
+        AppState.vaultKeeps = AppState.vaultKeeps.filter(vk => vk.vaultKeepId != id)
     }
 }
 
