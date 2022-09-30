@@ -1,8 +1,7 @@
 <template>
-<!-- add router link here -->
     <div class="container-fluid p-3">
         <div class="bg-light border p-1 elevation-2 rounded selectable" >
-            <img @click="setActiveKeep(); setActiveVaultKeep();" class="img-fluid image-adjust" :src="keep?.img" alt="image goes here" style="width:100%;">
+            <img @click="setActiveKeep()" class="img-fluid image-adjust" :src="keep?.img" alt="image goes here" style="width:100%;">
             <div>
                 <h3 class="text-white  content with-eight">{{keep?.name}}
                     <div class="righty">
@@ -26,6 +25,8 @@ import { logger } from '../utils/Logger';
 import KeepModal from './KeepModal.vue';
 import Pop from '../utils/Pop';
 import { vaultKeepsService } from '../services/VaultKeepsService';
+import { computed } from '@vue/reactivity';
+import { AppState } from '../AppState';
 export default {
     props:{  
         keep: { type: Object, required: true },
@@ -33,19 +34,15 @@ export default {
 
     setup(props) {
         return {
+            account: computed(() => AppState.account),
             async setActiveKeep() {
                 try {
                     Modal.getOrCreateInstance(document.getElementById("keepModal")).toggle();
-                    await keepsService.getOne(props.keep.id);
-                }
-                catch (error) {
-                logger.error(error);
-                Pop.toast(error.message, 'error')
-                }
-            },
-            async setActiveVaultKeep() {
-                try {
-                    vaultKeepsService.setActiveVaultKeep(props.keep.id);
+                    if(props.keep.vaultKeepId){
+                        await vaultKeepsService.setActiveVaultKeep(props.keep)
+                    }else{
+                        await keepsService.getOne(props.keep.id);
+                    }
                 }
                 catch (error) {
                 logger.error(error);

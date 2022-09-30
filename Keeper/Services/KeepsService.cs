@@ -34,6 +34,8 @@ namespace Keeper.Services
             {
                 throw new Exception("no keep at that id");
             }
+            keep.Views++;
+            _kRepo.Update(keep);
             return keep;
         }
 

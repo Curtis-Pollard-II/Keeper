@@ -25,9 +25,10 @@ class VaultKeepsService {
         AppState.activeVault = vault
     }
 
-    setActiveVaultKeep(id){
-        let vaultKeep = AppState.vaultKeeps.find(k => k.id == id)
-        AppState.activeVaultKeep = vaultKeep
+    setActiveVaultKeep(vaultKeep){
+        // let vaultKeep = AppState.vaultKeeps.findIndex(k => k.id == id)
+        AppState.activeKeep = vaultKeep
+        // send get by id request to the api/keeps/vaultKeep.id
     }
 
     async createVault(vaultData){

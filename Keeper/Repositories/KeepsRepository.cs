@@ -68,9 +68,6 @@ namespace Keeper.Repositories
             FROM keeps k
             JOIN accounts a ON a.id = k.creatorId
             WHERE k.id = @id;
-            UPDATE keeps k SET
-                k.views = k.views + 1
-            WHERE k.id = @id;
             "; 
             return _db.Query<Keep, Profile, Keep>(sql, (keep, profile) => 
             {
@@ -111,7 +108,8 @@ namespace Keeper.Repositories
             UPDATE keeps SET
                 name = @name,
                 description = @description,
-                img = @img
+                img = @img,
+                views = @views
             WHERE id = @id;
             ";
             _db.Execute(sql, keepData);
