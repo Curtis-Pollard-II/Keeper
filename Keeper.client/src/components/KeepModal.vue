@@ -43,7 +43,7 @@
                         <button title="Delete Keep"  @click="deleteKeep(keep)" class="bg-success btn btn-pill mdi mdi-trash-can-outline mdi-24px"></button>
                     </div> -->
                     <div>
-                        <button  title="Remove From this Vault"  @click="removeFromVault(keep.vaultKeepId)" class="bg-primary btn btn-pill mdi mdi-trash-can-outline mdi-24px"></button>
+                        <button  title="Remove From this Vault"  @click="removeFromVault(vaultKeep.Id)" class="bg-primary btn btn-pill mdi mdi-trash-can-outline mdi-24px"></button>
                     </div>
                 </div>
             </div>
@@ -70,7 +70,7 @@ setup() {
     account: computed(() => AppState.account),
     keep: computed(() => AppState.activeKeep),
     vaults: computed(() => AppState.activeProfileVaults),
-    vaultKeeps: computed(() => AppState.vaultKeeps),
+    vaultKeep: computed(() => AppState.activeVaultKeep),
 
     async deleteKeep(keep) {
         try {
@@ -86,13 +86,13 @@ setup() {
         }
     },
 
-    async removeFromVault(keep){
+    async removeFromVault(id){
         try {
           const yes = await Pop.confirm('Do you want to remove this keep from your Vault?')
           if (!yes){
             return;
           }
-          await vaultKeepsService.removeFromVault(keep?.vaultKeepId)
+          await vaultKeepsService.removeFromVault(id)
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message, 'error')

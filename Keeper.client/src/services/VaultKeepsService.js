@@ -25,6 +25,11 @@ class VaultKeepsService {
         AppState.activeVault = vault
     }
 
+    setActiveVaultKeep(id){
+        let vaultKeep = AppState.vaultKeeps.find(k => k.id == id)
+        AppState.activeVaultKeep = vaultKeep
+    }
+
     async createVault(vaultData){
         let res = await api.post(`api/vaults`, vaultData)
         logger.log('creating vualt from the service', res.data)

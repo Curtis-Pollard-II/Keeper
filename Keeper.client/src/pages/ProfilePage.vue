@@ -1,7 +1,7 @@
 <template>
       <div class="row bg-light">
 
-        <div class="col-md-4 p-4">
+        <div class="container col-md-4 p-4">
           <img class="img-fluid profile-pic rounded-circle z-depth-2" :src="profile?.picture" alt="">
         </div>
         <div class="col-md-8 text-center py-3">
@@ -13,7 +13,7 @@
         </div>
 
         <div class="container bg-success">
-          <h1 class="p-3 display-2 text-">Vaults
+          <h1 class="p-3 display-2">Vaults
                 <span v-if="profile?.id == account?.id" title="Open Vault Form" type="button" class="text-light selectable mdi mdi-plus" data-bs-target="#vault-form" data-bs-toggle="modal"></span>
           </h1>
           <div class="row">
@@ -22,7 +22,7 @@
             </div>
           </div>
         </div>
-<hr>
+
         <div class="container bg-info">
           <h1 class="p-3 display-2 text-black">Keeps 
             <span v-if="profile?.id == account?.id" title="Open Keep Form" type="button" class=" text-light selectable mdi mdi-plus" data-bs-target="#keep-form" data-bs-toggle="modal"></span>

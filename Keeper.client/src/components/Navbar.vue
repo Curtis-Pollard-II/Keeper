@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg text-black navbar-dark bg-dark px-3">
-    <router-link class="navbar-brand  d-flex" :to="{ name: 'Home' }">
+    <router-link title="Home Page" class="navbar-brand  d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center mdi mdi-safe">
         <h1 class="text-black">  KEEPER</h1> 
       </div>

@@ -1,13 +1,13 @@
 <template>
 <!-- add router link here -->
-    <div class=" container-fluid p-3">
+    <div class="container-fluid p-3">
         <div class="bg-light border p-1 elevation-2 rounded selectable" >
-            <img @click="setActiveKeep()" class="img-fluid image-adjust" :src="keep?.img" alt="image goes here" style="width:100%;">
+            <img @click="setActiveKeep(); setActiveVaultKeep();" class="img-fluid image-adjust" :src="keep?.img" alt="image goes here" style="width:100%;">
             <div>
                 <h3 class="text-white  content with-eight">{{keep?.name}}
                     <div class="righty">
                         <router-link :to="{ name: 'Profile', params: { id: keep?.creatorId } }">
-                            <img class="rounded-circle z-depth-2 img-size selectable" :src="keep?.creator.picture"/>
+                            <img class="rounded-circle z-depth-2 img-size selectable hover" title="Go to this profile" :src="keep?.creator.picture"/>
                         </router-link>
                     </div>
                 </h3>
@@ -37,6 +37,15 @@ export default {
                 try {
                     Modal.getOrCreateInstance(document.getElementById("keepModal")).toggle();
                     await keepsService.getOne(props.keep.id);
+                }
+                catch (error) {
+                logger.error(error);
+                Pop.toast(error.message, 'error')
+                }
+            },
+            async setActiveVaultKeep() {
+                try {
+                    vaultKeepsService.setActiveVaultKeep(props.keep.id);
                 }
                 catch (error) {
                 logger.error(error);
