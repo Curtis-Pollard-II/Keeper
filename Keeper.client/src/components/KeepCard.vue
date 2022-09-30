@@ -25,6 +25,7 @@ import { keepsService } from '../services/KeepsService';
 import { logger } from '../utils/Logger';
 import KeepModal from './KeepModal.vue';
 import Pop from '../utils/Pop';
+import { vaultKeepsService } from '../services/VaultKeepsService';
 export default {
     props:{  
         keep: { type: Object, required: true },

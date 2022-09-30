@@ -12,7 +12,7 @@ class VaultKeepsService {
     async getVaultKeeps(id){
         const res = await api.get(`api/vaults/${id}/keeps`)
         logger.log('getting VaultKeeps from the service', res.data)
-        AppState.activeVaultKeeps = res.data
+        AppState.vaultKeeps = res.data
         logger.log('Checking the appstate for VaultKeeps', res.data)
     }
 
@@ -34,7 +34,7 @@ class VaultKeepsService {
     async createVaultKeep(vaultKeep){
         let res = await api.post(`api/vaultkeeps`, vaultKeep)
         logger.log('creating vualtkeeps from the service', res.data)
-        AppState.activeVaultKeeps.push(res.data)
+        AppState.vaultKeeps.push(res.data)
     }
 
     async removeFromVault(id){

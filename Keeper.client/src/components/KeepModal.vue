@@ -18,6 +18,9 @@
                                     <div class="pt-2 text-center">
                                         Views: {{keep?.views}}
                                     </div>
+                                    <div class="pt-2 text-center">
+                                        Kept: {{keep?.kept}}
+                                    </div>
                                 </div>
                             </div>
                     </div>
@@ -36,16 +39,17 @@
                             </ul>
                         </button>
                     </div>
-                    <div v-if="keep?.creatorId == account?.id">
+                    <!-- <div v-if="keep?.creatorId == account?.id">
                         <button title="Delete Keep"  @click="deleteKeep(keep)" class="bg-success btn btn-pill mdi mdi-trash-can-outline mdi-24px"></button>
-                    </div>
-                    <div v-if="vaultKeep?.creatorId">
-                        <button  title="Remove From this Vault"  @click="removeFromVault(vaultKeep.id)" class="bg-primary btn btn-pill mdi mdi-trash-can-outline mdi-24px"></button>
+                    </div> -->
+                    <div>
+                        <button  title="Remove From this Vault"  @click="removeFromVault(keep.vaultKeepId)" class="bg-primary btn btn-pill mdi mdi-trash-can-outline mdi-24px"></button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- v-if="vaultKeep?.creatorId" -->
 
 </template>
 
@@ -66,7 +70,7 @@ setup() {
     account: computed(() => AppState.account),
     keep: computed(() => AppState.activeKeep),
     vaults: computed(() => AppState.activeProfileVaults),
-    vaultKeep: computed(() => AppState.activeVaultKeeps),
+    vaultKeeps: computed(() => AppState.vaultKeeps),
 
     async deleteKeep(keep) {
         try {
@@ -82,13 +86,13 @@ setup() {
         }
     },
 
-    async removeFromVault(id){
+    async removeFromVault(keep){
         try {
           const yes = await Pop.confirm('Do you want to remove this keep from your Vault?')
           if (!yes){
             return;
           }
-          await vaultKeepsService.removeFromVault(id)
+          await vaultKeepsService.removeFromVault(keep?.vaultKeepId)
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message, 'error')

@@ -48,6 +48,17 @@ namespace Keeper.Repositories
             }).ToList();
         }
 
+        internal Keep Increase(Keep keep)
+        {
+            string sql = @"
+            UPDATE keeps k SET
+                k.kept = k.kept + 1
+            WHERE k.id = @id;
+            ";
+            _db.Execute(sql, keep);
+            return keep;
+        }
+
         internal Keep GetOne(int id)
         {
             string sql = @"

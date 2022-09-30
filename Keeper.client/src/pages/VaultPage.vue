@@ -68,7 +68,7 @@ onMounted(()=> {
 
   return {
     account: computed(() => AppState.account),
-    keeps: computed(() => AppState.activeVaultKeeps),
+    keeps: computed(() => AppState.vaultKeeps),
     vault: computed(() => AppState.activeVault),
 
     async deleteVault() {

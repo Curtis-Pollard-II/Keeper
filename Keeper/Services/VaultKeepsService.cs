@@ -11,22 +11,27 @@ namespace Keeper.Services
         private readonly VaultsService _vService;
         private readonly KeepsService _kService;
         private readonly VaultsRepository _VRepo;
+        private readonly KeepsRepository _KRepo;
 
-        public VaultKeepsService(VaultKeepsRepository vKRepo, VaultsService vService, KeepsService kService, VaultsRepository vRepo)
+        public VaultKeepsService(VaultKeepsRepository vKRepo, VaultsService vService, KeepsService kService, VaultsRepository vRepo, KeepsRepository kRepo)
         {
             _VKRepo = vKRepo;
             _vService = vService;
             _kService = kService;
             _VRepo = vRepo;
+            _KRepo = kRepo;
         }
 
         internal VaultKeep Create(VaultKeep newVaultKeep)
         {
             Vault vault = _VRepo.GetOne(newVaultKeep.VaultId);
+            Keep keep = _KRepo.GetOne(newVaultKeep.KeepId);
             if (vault.CreatorId != newVaultKeep.CreatorId)
             {
                 throw new Exception("Not allowed to add a keep here silly");
             }
+            keep.Kept++;
+            _KRepo.Increase(keep);
             return _VKRepo.Create(newVaultKeep);
         }
 

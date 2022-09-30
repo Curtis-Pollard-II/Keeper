@@ -52,6 +52,10 @@ FROM keeps k
 JOIN accounts a ON a.id = k.creatorId
 WHERE k.id = 1;
 
+UPDATE keeps k SET
+    k.kept = k.kept + 1
+WHERE k.id = 350;
+
 -- Keep Update
 UPDATE keeps SET
   name = "hey o",
@@ -122,6 +126,15 @@ SELECT
     a.*
 FROM keeps k
 JOIN accounts a ON a.id = k.creatorId;
+
+-- INSERT INTO vaultkeeps
+-- (keepId, creatorId, vaultId)
+-- VALUES
+-- (350,"63361887f81f7b66c56de385",354);
+-- SELECT LAST_INSERT_ID();
+-- UPDATE keeps k SET
+--     k.kept = k.kept + 1
+-- WHERE k.id = 350;
 
 
 SELECT
