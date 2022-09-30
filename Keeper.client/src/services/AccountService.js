@@ -9,6 +9,7 @@ class AccountService {
       AppState.account = res.data
     } catch (err) {
       logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
+      Pop.toast(err.message, 'error')
     }
   }
   async getAccountVaults(){
@@ -17,6 +18,7 @@ class AccountService {
       AppState.activeProfileVaults = res.data
     } catch (err){
       logger.log(err, 'getting account vaults from the service')
+      Pop.toast(err.message, 'error')
     }
   }
 

@@ -13,9 +13,9 @@ class KeepsService {
 
     async getOne(id) {
         const res = await api.get(`api/keeps/${id}`)
-        logger.log ('getting one keep from the service', res.data)
+        // logger.log ('getting one keep from the service', res.data)
         AppState.activeKeep = res.data
-        logger.log('active keep in the appstate success', AppState.activeKeep)
+        // logger.log('active keep in the appstate success', AppState.activeKeep)
     }
 
     async deleteKeep(id){
@@ -25,8 +25,8 @@ class KeepsService {
 
     async createKeep(keepData){
         let res = await api.post(`api/keeps`, keepData)
-        logger.log('creating keep from the service', res.data)
-        AppState.keeps.push(res.data)
+        // logger.log('creating keep from the service', res.data)
+        AppState.activeProfileKeeps.push(res.data)
 
     }
 

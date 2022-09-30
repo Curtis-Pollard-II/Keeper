@@ -37,7 +37,7 @@ return {
 
 .home{
   display: grid;
-  height: 28vh;
+  max-height: 28vh;
   place-content: center;
 }
 

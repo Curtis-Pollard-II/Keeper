@@ -16,7 +16,7 @@
 
         <div class="container bg-success">
           <h1 class="p-3 display-2 text-light">Vaults
-                <span type="button" class="selectable mdi mdi-plus" data-bs-target="#vault-form" data-bs-toggle="modal"></span>
+                <span v-if="profile?.id == account?.id" title="Open Vault Form" type="button" class="selectable mdi mdi-plus" data-bs-target="#vault-form" data-bs-toggle="modal"></span>
           </h1>
           <div class="row">
             <div class="col-md-2" v-for="v in vaults" :key="v.id">
@@ -27,7 +27,7 @@
 <hr>
         <div class="container bg-info">
           <h1 class="p-3 display-2 text-light">Keeps 
-            <span type="button" class="selectable mdi mdi-plus" data-bs-target="#keep-form" data-bs-toggle="modal"></span>
+            <span v-if="profile?.id == account?.id" title="Open Keep Form" type="button" class="selectable mdi mdi-plus" data-bs-target="#keep-form" data-bs-toggle="modal"></span>
           </h1>
           <div class="row">
             <div class="col-md-3" v-for="k in keeps" :key="k.id">
@@ -53,6 +53,7 @@ import { profilesService } from '../services/ProfilesService';
 import { logger } from '../utils/Logger';
 import AddVaultModal from '../components/AddVaultModal.vue';
 import AddKeepForm from '../components/AddKeepForm.vue';
+import Pop from '../utils/Pop';
 
 export default {
     setup() {
@@ -63,6 +64,7 @@ export default {
             }
             catch (error) {
                 logger.error(error);
+                Pop.toast(error.message, 'error')
             }
         }
         async function getVaultsByProfileId() {
@@ -71,6 +73,7 @@ export default {
             }
             catch (error) {
                 logger.error(error);
+                Pop.toast(error.message, 'error')
             }
         }
         async function getKeepsByProfileId() {
@@ -79,6 +82,7 @@ export default {
             }
             catch (error) {
                 logger.error(error);
+                Pop.toast(error.message, 'error')
             }
         }
         onMounted(() => {
@@ -90,6 +94,7 @@ export default {
             profile: computed(() => AppState.activeProfile),
             keeps: computed(() => AppState.activeProfileKeeps),
             vaults: computed(() => AppState.activeProfileVaults),
+            account: computed(() => AppState.account),
 
         };
     },

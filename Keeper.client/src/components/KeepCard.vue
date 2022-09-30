@@ -1,8 +1,8 @@
 <template>
 <!-- add router link here -->
     <div class=" container-fluid p-3">
-        <div class="bg-light border p-1 elevation-2 rounded selectable" @click="setActiveKeep()">
-            <img class="img-fluid" :src="keep?.img" alt="image goes here" style="width:100%;">
+        <div class="bg-light border p-1 elevation-2 rounded selectable" >
+            <img @click="setActiveKeep()" class="img-fluid" :src="keep?.img" alt="image goes here" style="width:100%;">
             <div>
                 <h3 class="text-white  content with-eight">{{keep?.name}}
                     <div class="righty">
@@ -24,6 +24,7 @@ import { Modal } from 'bootstrap';
 import { keepsService } from '../services/KeepsService';
 import { logger } from '../utils/Logger';
 import KeepModal from './KeepModal.vue';
+import Pop from '../utils/Pop';
 export default {
     props:{  
         keep: { type: Object, required: true },
@@ -38,7 +39,7 @@ export default {
                 }
                 catch (error) {
                 logger.error(error);
-                    
+                Pop.toast(error.message, 'error')
                 }
             },
         };

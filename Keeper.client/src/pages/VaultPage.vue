@@ -6,7 +6,7 @@
 
         </div>
         <div class=" col-2 offset-6">
-            <button v-if="vault?.creatorId == account.id" @click="deleteVault()" class="bg-success btn btn-pill mdi mdi-trash-can-outline mdi-24px"></button>
+            <button title="Delete Vault" v-if="vault?.creatorId == account.id" @click="deleteVault()" class="bg-success btn btn-pill mdi mdi-trash-can-outline mdi-24px"></button>
   
         </div>
 
@@ -47,6 +47,7 @@ const router = useRouter();
         } catch (error) {
           logger.error(error)
           Pop.error(error.message)
+          router.push({name: 'Home'})
         }
     }
 

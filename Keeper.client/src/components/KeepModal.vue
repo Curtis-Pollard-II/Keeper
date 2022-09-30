@@ -15,6 +15,9 @@
                                     <div class="pt-2">
                                         {{keep?.description}}
                                     </div>
+                                    <div class="pt-2">
+                                        Views: {{keep?.views}}
+                                    </div>
                                 </div>
                             </div>
                     </div>
@@ -26,16 +29,19 @@
                         
 
                     <div class="dropdown">
-                        <button  class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button  title="Open Vault Form" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Add to Vault
                             <ul class="dropdown-menu">
                                 <li><a  v-for="v in vaults" :key="v.name" class="dropdown-item" @click="createVaultKeep(v.id)">{{v.name}}</a></li>
                             </ul>
                         </button>
                     </div>
-                        
-                    <button v-if="keep?.creatorId == account?.id" @click="deleteKeep(keep)" class="bg-success btn btn-pill mdi mdi-trash-can-outline mdi-24px"></button>
-                    
+                    <div v-if="keep?.creatorId == account?.id">
+                        <button title="Delete Keep"  @click="deleteKeep(keep)" class="bg-success btn btn-pill mdi mdi-trash-can-outline mdi-24px"></button>
+                    </div>
+                    <!-- <div v-else-if="keep?.creatorId == account?.id && ">
+                        <button  title="Remove From this Vault"  @click="removeFromVault(vaultKeep.id)" class="bg-danger btn btn-pill mdi mdi-trash-can-outline mdi-24px"></button>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -72,6 +78,19 @@ setup() {
         } catch (error) {
         logger.error(error)
         Pop.toast(error.message, 'error')
+        }
+    },
+
+    async removeFromVault(id){
+        try {
+          const yes = await Pop.confirm('Do you want to remove this keep from your Vault?')
+          if (!yes){
+            return;
+          }
+          await vaultKeepsService.removeFromVault(id)
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message, 'error')
         }
     },
 
