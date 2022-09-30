@@ -2,7 +2,7 @@
 <!-- add router link here -->
     <div class=" container-fluid p-3">
         <div class="bg-light border p-1 elevation-2 rounded selectable" >
-            <img @click="setActiveKeep()" class="img-fluid overlay" :src="keep?.img" alt="image goes here" style="width:100%;">
+            <img @click="setActiveKeep()" class="img-fluid image-adjust" :src="keep?.img" alt="image goes here" style="width:100%;">
             <div>
                 <h3 class="text-white  content with-eight">{{keep?.name}}
                     <div class="righty">
@@ -51,26 +51,24 @@ export default {
 
 <style> 
 
-.img-size{
+.img-size{ /* this is for the name profile image in bottom left */
     max-width: 50px;
     width: auto;
     opacity: 0.8;
     
 }
 
-.container-fluid {
+.container-fluid { /* this is for the text in bottom */
     position: relative;
-    font-family: Garamond, serif; 
+    font-family: DejaVu Sans Mono, monospace; 
     font-size: 24px; 
-    font-style: normal; 
-    font-variant: normal; 
     font-weight: 700; 
-    line-height: 26.4px; 
+     
     
 }
 
 
-.container-fluid .content {/* this is for the name in bottom */
+.container-fluid .content {/* this is for the box holding the text at the bottom */
     
     position: absolute; 
     bottom: 0; 
@@ -79,6 +77,8 @@ export default {
     padding: 20px; 
 
 }
+
+/* filter: contrast(50%); */
 
 .with-eight {
     text-shadow:
@@ -99,15 +99,8 @@ export default {
     right: 36px;
 }
 
-.overlay{
-    position: absolute;
-    content: "";
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    opacity: 0.3;
+.image-adjust{
+    filter: contrast(75%);
 }
 
 

@@ -2,7 +2,7 @@
     <div class=" container-fluid p-3">
         <div class="bg-light border p-1 elevation-2 rounded selectable">
                 <router-link :to="{ name: 'Vault', params: { id: vault?.id } }">
-                    <img class="adjust-size home home-card" :src="vault?.img" alt="image goes here" style="width:100%;">
+                    <img class="adjust-size  image-adjust home home-card" :src="vault?.img" alt="image goes here" style="width:100%;">
                 </router-link>
             <div>
                 <h3 class="text-white  content with-eight">{{vault?.name}}</h3>
@@ -59,6 +59,10 @@ return {
         -0.05em 0.05em black,
         0.05em -0.05em black,
         0.05em 0.05em black;
+}
+
+.image-adjust{
+    filter: contrast(75%);
 }
 
 

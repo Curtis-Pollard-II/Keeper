@@ -6,7 +6,7 @@
           <img class="img-fluid profile-pic rounded-circle z-depth-2" :src="profile?.picture" alt="">
         </div>
         <div class="col-md-8 text-center py-3">
-            <h1 class=" display-2 text-info font-pt-2">
+            <h1 class=" display-2 text-black font-pt-2">
               {{profile?.name}}
             </h1> 
             <p class="display-6">Vaults:  {{vaults?.length}}</p>
@@ -15,8 +15,8 @@
         </div>
 
         <div class="container bg-success">
-          <h1 class="p-3 display-2 text-light">Vaults
-                <span v-if="profile?.id == account?.id" title="Open Vault Form" type="button" class="selectable mdi mdi-plus" data-bs-target="#vault-form" data-bs-toggle="modal"></span>
+          <h1 class="p-3 display-2 text-black">Vaults
+                <span v-if="profile?.id == account?.id" title="Open Vault Form" type="button" class="text-light selectable mdi mdi-plus" data-bs-target="#vault-form" data-bs-toggle="modal"></span>
           </h1>
           <div class="row">
             <div class="col-md-2" v-for="v in vaults" :key="v.id">
@@ -26,8 +26,8 @@
         </div>
 <hr>
         <div class="container bg-info">
-          <h1 class="p-3 display-2 text-light">Keeps 
-            <span v-if="profile?.id == account?.id" title="Open Keep Form" type="button" class="selectable mdi mdi-plus" data-bs-target="#keep-form" data-bs-toggle="modal"></span>
+          <h1 class="p-3 display-2 text-black">Keeps 
+            <span v-if="profile?.id == account?.id" title="Open Keep Form" type="button" class=" text-light selectable mdi mdi-plus" data-bs-target="#keep-form" data-bs-toggle="modal"></span>
           </h1>
           <div class="row">
             <div class="col-md-3" v-for="k in keeps" :key="k.id">
@@ -112,5 +112,8 @@ export default {
 }
 h1 {
   text-shadow: 2px 2px 3px #000000;
+  font-family: DejaVu Sans Mono, monospace;
+  color: #000000;
+
 }
 </style>
